@@ -116,10 +116,16 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 500; letter-spac
 .on-paper { background: var(--paper); color: var(--slate-dark); }
 
 /* ---------- reveal-on-scroll ---------- */
+/* Visible by default. If script.js fails to load, content simply stays
+   visible — no dependency on JS to be seen. script.js opts elements INTO
+   the hidden state (via .pre-reveal) right before it starts observing them,
+   then removes it once the element scrolls into view. */
 .reveal {
+  transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
+}
+.reveal.pre-reveal {
   opacity: 0;
   transform: translateY(18px);
-  transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
 }
 .reveal.is-visible { opacity: 1; transform: translateY(0); }
 
